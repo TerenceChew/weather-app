@@ -1,5 +1,15 @@
 .app {
   min-height: 100vh;
-  background-color: blue;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("./bgImg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
+.fallback-err-msg {
+  padding: 25px;
+  color: var(--accent-1);
+  font-size: 1.85rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}

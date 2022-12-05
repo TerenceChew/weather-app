@@ -3,4 +3,6 @@ import createAppUI from "./container/app";
 
 const root = document.querySelector(".root");
 
-root.append(createAppUI());
+createAppUI()
+  .then((app) => root.append(app))
+  .catch(console.log);

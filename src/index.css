@@ -1,7 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Alatsi&family=JetBrains+Mono:wght@200&family=Lato:wght@100;300;400&family=Lobster&family=Montserrat+Alternates:wght@300;400&family=Montserrat:wght@200;300;400;500;600;700&family=PT+Mono&family=Press+Start+2P&display=swap');
+
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Variables */
+:root {
+  --accent-1: white;
+}
+
+/* Utilities */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
 }
