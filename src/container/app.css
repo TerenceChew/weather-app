@@ -1,6 +1,6 @@
 .app {
   min-height: 100vh;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("./bgImg.jpg");
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("./bgImg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

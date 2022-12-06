@@ -69,33 +69,6 @@ const createAppUI = async () => {
     app.append(createTopContainerUI(appObj), createBottomContainerUI(appObj));
 
     return app;
-
-    // const data = localStorage.weatherData
-    //   ? JSON.parse(localStorage.weatherData)
-    //   : "";
-    // const locationName = localStorage.locationData
-    //   ? JSON.parse(localStorage.locationData)
-    //   : "";
-
-    // console.log(data, locationName);
-
-    // if (data && locationName) {
-    //   appObj.updateMainData(data);
-    //   appObj.updateLocationName(locationName);
-    //   appObj.initializeSubData();
-
-    //   console.log(appObj.getDailyData());
-    //   console.log(appObj.getHourlyData());
-
-    //   app.append(createTopContainerUI(appObj), createBottomContainerUI(appObj));
-
-    //   return app;
-    // }
-
-    // const [d, l] = await utilityFunctions.getWeatherData("London", "KY", "US");
-
-    // localStorage.weatherData = JSON.stringify(d);
-    // localStorage.locationData = JSON.stringify(l);
   } catch (err) {
     console.log(err);
 
