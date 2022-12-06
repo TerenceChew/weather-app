@@ -1,5 +1,6 @@
 import "./app.css";
 import createTopContainerUI from "../components/topContainer/topContainer";
+import createBottomContainerUI from "../components/bottomContainer/bottomContainer";
 import * as utilityFunctions from "../modules/utilityFunctions";
 
 const appFactory = () => {
@@ -8,12 +9,14 @@ const appFactory = () => {
   let currData;
   let dailyData;
   let hourlyData;
+  let tempMode = "C";
 
   // Getting
   const getLocationName = () => locationName;
   const getCurrData = () => currData;
   const getDailyData = () => dailyData;
   const getHourlyData = () => hourlyData;
+  const getTempMode = () => tempMode;
 
   // Updating
   const updateMainData = (newMainData) => {
@@ -21,6 +24,9 @@ const appFactory = () => {
   };
   const updateLocationName = (newLocationName) => {
     locationName = newLocationName;
+  };
+  const toggleTempMode = () => {
+    tempMode = tempMode === "C" ? "F" : "C";
   };
 
   // Initializing
@@ -35,8 +41,10 @@ const appFactory = () => {
     getCurrData,
     getDailyData,
     getHourlyData,
+    getTempMode,
     updateMainData,
     updateLocationName,
+    toggleTempMode,
     initializeSubData,
   };
 };
@@ -48,44 +56,49 @@ const createAppUI = async () => {
   app.classList.add("app");
 
   try {
-    // const [data, locationName] = await utilityFunctions.getWeatherData(
-    //   "London",
-    //   "OH",
-    //   "US"
-    // );
-    
-    // appObj.updateMainData(data);
-    // appObj.updateLocationName(locationName);
-    // appObj.initializeSubData();
+    const [data, locationName] = await utilityFunctions.getWeatherData(
+      "London",
+      "OH",
+      "US"
+    );
 
-    // app.append(createTopContainerUI(appObj));
+    appObj.updateMainData(data);
+    appObj.updateLocationName(locationName);
+    appObj.initializeSubData();
 
-    // return app;
+    app.append(createTopContainerUI(appObj), createBottomContainerUI(appObj));
 
-    const data = localStorage.weatherData
-    ? JSON.parse(localStorage.weatherData)
-    : "";
-    const locationName = localStorage.locationData
-    ? JSON.parse(localStorage.locationData)
-    : "";
+    return app;
 
-    console.log(data, locationName);
+    // const data = localStorage.weatherData
+    //   ? JSON.parse(localStorage.weatherData)
+    //   : "";
+    // const locationName = localStorage.locationData
+    //   ? JSON.parse(localStorage.locationData)
+    //   : "";
 
-    if (data && locationName) {
-      appObj.updateMainData(data);
-      appObj.updateLocationName(locationName);
-      appObj.initializeSubData();
+    // console.log(data, locationName);
 
-      app.append(createTopContainerUI(appObj));
+    // if (data && locationName) {
+    //   appObj.updateMainData(data);
+    //   appObj.updateLocationName(locationName);
+    //   appObj.initializeSubData();
 
-      return app;
-    }
+    //   console.log(appObj.getDailyData());
+    //   console.log(appObj.getHourlyData());
 
-    const [d, l] = await utilityFunctions.getWeatherData("London", "KY", "US");
+    //   app.append(createTopContainerUI(appObj), createBottomContainerUI(appObj));
 
-    localStorage.weatherData = JSON.stringify(d);
-    localStorage.locationData = JSON.stringify(l);
+    //   return app;
+    // }
+
+    // const [d, l] = await utilityFunctions.getWeatherData("London", "KY", "US");
+
+    // localStorage.weatherData = JSON.stringify(d);
+    // localStorage.locationData = JSON.stringify(l);
   } catch (err) {
+    console.log(err);
+
     const fallbackErrMsg = document.createElement("p");
 
     fallbackErrMsg.classList.add("fallback-err-msg");
@@ -98,6 +111,3 @@ const createAppUI = async () => {
 };
 
 export default createAppUI;
-
-
-

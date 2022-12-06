@@ -8,6 +8,16 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 /* Variables */
 :root {
   --accent-1: white;

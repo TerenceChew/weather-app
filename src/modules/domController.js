@@ -5,4 +5,11 @@ const updateAppUI = (topContainer, bottomContainer) => {
   app.append(topContainer, bottomContainer);
 };
 
-export { updateAppUI };
+const updateInfosContainerUI = (newInfosContainerUI) => {
+  const bottomContainer = document.querySelector(".bottom-container");
+
+  bottomContainer.lastElementChild.remove();
+  bottomContainer.append(newInfosContainerUI);
+};
+
+export { updateAppUI, updateInfosContainerUI };

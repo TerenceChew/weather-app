@@ -1,5 +1,5 @@
 .top-container {
-  height: 400px;
+  height: 425px;
   padding: 15px;
   justify-content: space-between;
   font-family: 'Montserrat', sans-serif;
@@ -9,7 +9,6 @@
 .sub-container-1,
 .sub-container-2 {
   height: 100%;
-  background-color: rgba(255, 192, 203, 0.555);
 }
 
 /* Sub container 1 */
@@ -35,9 +34,15 @@
 }
 
 .sub-container-1 .temp {
-  margin-bottom: 10px;
-  font-size: 2.5rem;
+  font-size: 2.55rem;
   font-weight: 700;
+}
+
+.sub-container-1 .unit-toggler {
+  margin-bottom: 15px;
+  font-size: .65rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .sub-container-1 .icon {
@@ -78,7 +83,7 @@
 
 .sub-container-1 .error-msg {
   display: none;
-  font-size: .55rem;
+  font-size: .65rem;
   font-weight: 600;
 }
 
@@ -98,7 +103,7 @@
   gap: 10px;
 }
 
-.sub-container-2 .text-box {
+.sub-container-2 .texts-box {
   gap: 5px;
 }
 

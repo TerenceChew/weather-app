@@ -1,24 +1,36 @@
 import "./topContainer.css";
+import createBottomContainerUI from "../bottomContainer/bottomContainer";
 import * as utilityFunctions from "../../modules/utilityFunctions";
 import * as domController from "../../modules/domController";
-// Weather icons
-import lightning from "../../assets/svgs/lightning.svg";
-import rainy from "../../assets/svgs/rainy.svg";
-import snow from "../../assets/svgs/snow.svg";
-import mist from "../../assets/svgs/mist.svg";
-import sun from "../../assets/svgs/sun.svg";
-import moon from "../../assets/svgs/moon.svg";
-import cloudyDay from "../../assets/svgs/cloudyDay.svg";
-import cloudyNight from "../../assets/svgs/cloudyNight.svg";
-import cloud from "../../assets/svgs/cloud.svg";
-import cloudy from "../../assets/svgs/cloudy.svg";
 // Sub container 1 icons
-import magnifier from "../../assets/searchIcon.png";
+import magnifier from "../../assets/pngs/searchIcon.png";
 // Sub container 2 icons
 import thermoIcon from "../../assets/svgs/thermo.svg";
 import humidityIcon from "../../assets/svgs/humidity.svg";
 import chanceOfRainIcon from "../../assets/svgs/chanceOfRain.svg";
 import windSpeedIcon from "../../assets/svgs/windSpeed.svg";
+
+const handleTogglerClick = (unitToggler, appObj) => {
+  appObj.toggleTempMode();
+  const mode = appObj.getTempMode();
+  const tempElements = document.querySelectorAll(".temperature");
+
+  unitToggler.innerText = mode === "C" ? "Display °F" : "Display °C";
+
+  if (mode === "C") {
+    tempElements.forEach((elem) => {
+      elem.innerText = utilityFunctions.convertFahrenheitToCelsius(
+        utilityFunctions.getTempVal(elem.innerText)
+      );
+    });
+  } else {
+    tempElements.forEach((elem) => {
+      elem.innerText = utilityFunctions.convertCelsiusToFahrenheit(
+        utilityFunctions.getTempVal(elem.innerText)
+      );
+    });
+  }
+};
 
 const handleSearch = async (appObj) => {
   const searchField = document.querySelector(".search-field");
@@ -36,51 +48,20 @@ const handleSearch = async (appObj) => {
       appObj.updateLocationName(locationName);
       appObj.initializeSubData();
 
-      domController.updateAppUI(createTopContainerUI(appObj), "blank");
+      domController.updateAppUI(
+        createTopContainerUI(appObj),
+        createBottomContainerUI(appObj)
+      );
     }
   } catch (err) {
+    console.log(err);
+
     const errMsges = document.querySelectorAll(".error-msg");
 
     errMsges.forEach((msg) => {
       msg.classList.add("show");
     });
-
-    console.log(err);
   }
-};
-
-const determineIcon = (iconCode) => {
-  // 11d -> lightning
-  // 09d -> rainy
-  // 10d -> rainy
-  // 13d -> snow
-  // 01d -> sun
-  // 01n -> moon
-  // 50d -> mist
-  // 02d -> cloudyDay
-  // 02n -> cloudyNght
-  // 03d / 03n -> cloud
-  // 04d / 04n -> cloudy
-
-  if (iconCode === "11d") return lightning;
-
-  if (iconCode === "09d" || iconCode === "10d") return rainy;
-
-  if (iconCode === "13d") return snow;
-
-  if (iconCode === "01d") return sun;
-
-  if (iconCode === "01n") return moon;
-
-  if (iconCode === "50d") return mist;
-
-  if (iconCode === "02d") return cloudyDay;
-
-  if (iconCode === "02n") return cloudyNight;
-
-  if (iconCode === "03d" || iconCode === "03n") return cloud;
-
-  return cloudy;
 };
 
 const createSubContainer1 = (appObj) => {
@@ -97,6 +78,7 @@ const createSubContainer1 = (appObj) => {
   const date = document.createElement("p");
   const time = document.createElement("p");
   const temp = document.createElement("p");
+  const unitToggler = document.createElement("p");
   const icon = document.createElement("img");
   const form = document.createElement("form");
   const searchField = document.createElement("input");
@@ -123,11 +105,17 @@ const createSubContainer1 = (appObj) => {
   time.classList.add("time");
   time.innerText = currData.time;
 
-  temp.classList.add("temp");
+  temp.classList.add("temperature", "temp");
   temp.innerText = currData.temp;
 
+  unitToggler.classList.add("unit-toggler");
+  unitToggler.innerText = "Display °F";
+  unitToggler.addEventListener("pointerdown", () => {
+    handleTogglerClick(unitToggler, appObj);
+  });
+
   icon.classList.add("icon");
-  icon.src = determineIcon(currData.icon);
+  icon.src = utilityFunctions.determineIcon(currData.icon);
   icon.title = currData.description;
 
   form.classList.add("form", "flex");
@@ -172,6 +160,7 @@ const createSubContainer1 = (appObj) => {
     date,
     time,
     temp,
+    unitToggler,
     icon,
     form,
     errorMsg1,
@@ -192,20 +181,21 @@ const createSubContainer2 = (appObj) => {
 
   [feelsLike, humidity, chanceOfRain, windSpeed].forEach((e, i) => {
     const box = document.createElement("div");
-    const textBox = document.createElement("div");
+    const textsBox = document.createElement("div");
     const icon = document.createElement("img");
     const text1 = document.createElement("p");
     const text2 = document.createElement("p");
 
     box.classList.add("box", "flex");
     icon.classList.add("icon");
-    textBox.classList.add("text-box", "flex-column");
+    textsBox.classList.add("texts-box", "flex-column");
     text1.classList.add("text-1");
     text2.classList.add("text-2");
 
     if (i === 0) {
       icon.src = thermoIcon;
       text1.innerText = "Feels Like";
+      text2.classList.add("temperature");
     }
 
     if (i === 1) {
@@ -225,8 +215,8 @@ const createSubContainer2 = (appObj) => {
 
     text2.innerText = e;
 
-    textBox.append(text1, text2);
-    box.append(icon, textBox);
+    textsBox.append(text1, text2);
+    box.append(icon, textsBox);
     container.append(box);
   });
 
@@ -244,4 +234,3 @@ const createTopContainerUI = (appObj) => {
 };
 
 export default createTopContainerUI;
-

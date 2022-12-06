@@ -1,23 +1,67 @@
 import format from "date-fns/format";
+// Weather icons
+import lightning from "../assets/svgs/lightning.svg";
+import rainy from "../assets/svgs/rainy.svg";
+import snow from "../assets/svgs/snow.svg";
+import mist from "../assets/svgs/mist.svg";
+import sun from "../assets/svgs/sun.svg";
+import moon from "../assets/svgs/moon.svg";
+import cloudyDay from "../assets/svgs/cloudyDay.svg";
+import cloudyNight from "../assets/svgs/cloudyNight.svg";
+import cloud from "../assets/svgs/cloud.svg";
+import cloudy from "../assets/svgs/cloudy.svg";
 
 // Variables
 const apiKey = "c6073913dce281c7eaafcff759acad1b";
 
 // Utilities
+const determineIcon = (iconCode) => {
+  // 11d -> lightning
+  // 09d -> rainy
+  // 10d -> rainy
+  // 13d -> snow
+  // 01d -> sun
+  // 01n -> moon
+  // 50d -> mist
+  // 02d -> cloudyDay
+  // 02n -> cloudyNght
+  // 03d / 03n -> cloud
+  // 04d / 04n -> cloudy
+
+  if (iconCode === "11d") return lightning;
+
+  if (iconCode === "09d" || iconCode === "10d") return rainy;
+
+  if (iconCode === "13d") return snow;
+
+  if (iconCode === "01d") return sun;
+
+  if (iconCode === "01n") return moon;
+
+  if (iconCode === "50d") return mist;
+
+  if (iconCode === "02d") return cloudyDay;
+
+  if (iconCode === "02n") return cloudyNight;
+
+  if (iconCode === "03d" || iconCode === "03n") return cloud;
+
+  return cloudy;
+};
+
 const setElemProps = (elem, obj) => {
   Object.keys(obj).forEach((key) => {
     elem[key] = obj[key];
   });
 };
 
+const getTempVal = (temp) => Number(temp.split(" ")[0]);
+
 const convertFahrenheitToCelsius = (fahrenheit) =>
-  ((fahrenheit - 32) * 0.5556).toFixed(0);
+  `${((Number(fahrenheit) - 32) * 0.5556).toFixed(0)} °C`;
 
-const convertCelsiusToFahrenheit = (celsius) => (celsius * 1.8 + 32).toFixed(0);
-
-const processTempCelsius = (celsius) => `${celsius} °C`;
-
-const processTempFahrenheit = (celsius) => `${celsius} °F`;
+const convertCelsiusToFahrenheit = (celsius) =>
+  `${(Number(celsius) * 1.8 + 32).toFixed(0)} °F`;
 
 const processDescription = (description) =>
   description
@@ -39,7 +83,7 @@ const processTimeHH = (fullDate) => format(new Date(fullDate), "h aaa"); // 8 pm
 const processWindSpeed = (windSpeedMPH) =>
   `${(windSpeedMPH * 1.609344).toFixed(1)} km/h`;
 
-const processFeelsLike = (feelsLike) => processTempCelsius(convertFahrenheitToCelsius(feelsLike));
+const processFeelsLike = (feelsLike) => convertFahrenheitToCelsius(feelsLike);
 
 const processHumidity = (humidity) => `${humidity} %`;
 
@@ -84,7 +128,7 @@ const getWeatherData = async (cityName, stateCode = "", countryCode = "") => {
     );
     const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,alerts&appid=${apiKey}`;
     const response = await fetch(url);
-    
+
     console.log("getWeatherData Ran");
 
     if (response.ok) {
@@ -102,7 +146,7 @@ const getWeatherData = async (cityName, stateCode = "", countryCode = "") => {
 
 // Current data
 const processCurrData = (currData, timezone, pop) => {
-  const temp = processTempCelsius(convertFahrenheitToCelsius(currData.temp));
+  const temp = convertFahrenheitToCelsius(currData.temp);
   const { icon } = currData.weather[0];
   const description = processDescription(currData.weather[0].description);
   const fullDate = processFullDate(currData.dt, timezone);
@@ -137,21 +181,20 @@ const getCurrData = (data) => {
 // Daily data
 const processDailyData = (dailyData, timezone) => {
   const dailyDataFor7Days = dailyData.slice(0, -1);
-  const processedDailyData = dailyDataFor7Days.map((day) => {
-    const dayOfWeek = processDay(processFullDate(day.dt, timezone));
-    const temp = processTempCelsius(convertFahrenheitToCelsius(day.temp.day));
+  const processedDailyData = dailyDataFor7Days.map((day, i) => {
+    const description = processDescription(day.weather[0].description);
+    const dayOfWeek =
+      i === 0 ? "Today" : processDay(processFullDate(day.dt, timezone));
     const minTemp = convertFahrenheitToCelsius(day.temp.min);
     const maxTemp = convertFahrenheitToCelsius(day.temp.max);
     const { icon } = day.weather[0];
-    const description = processDescription(day.weather[0].description);
 
     return {
+      description,
       dayOfWeek,
-      temp,
       minTemp,
       maxTemp,
       icon,
-      description,
     };
   });
 
@@ -168,16 +211,16 @@ const getDailyData = (data) => {
 const processHourlyData = (hourlyData, timezone) => {
   const hourlyDataFor24Hours = hourlyData.slice(0, 24);
   const processedHourlyData = hourlyDataFor24Hours.map((hour) => {
-    const timeOfDay = processTimeHH(processFullDate(hour.dt, timezone));
-    const temp = processTempCelsius(convertFahrenheitToCelsius(hour.temp));
-    const { icon } = hour.weather[0];
     const description = processDescription(hour.weather[0].description);
+    const timeOfDay = processTimeHH(processFullDate(hour.dt, timezone));
+    const temp = convertFahrenheitToCelsius(hour.temp);
+    const { icon } = hour.weather[0];
 
     return {
+      description,
       timeOfDay,
       temp,
       icon,
-      description,
     };
   });
 
@@ -191,7 +234,9 @@ const getHourlyData = (data) => {
 };
 
 export {
+  determineIcon,
   setElemProps,
+  getTempVal,
   convertFahrenheitToCelsius,
   convertCelsiusToFahrenheit,
   getWeatherData,
