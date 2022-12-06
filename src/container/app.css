@@ -11,5 +11,5 @@
   color: var(--accent-1);
   font-size: 1.85rem;
   font-weight: 600;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--ff-1);
 }

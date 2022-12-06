@@ -3,7 +3,7 @@
   padding: 15px 10px 0;
   justify-content: space-between;
   margin-bottom: 3.5vh;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--ff-1);
   color: var(--accent-1);
 }
 
@@ -17,18 +17,18 @@
   width: 210px;
 }
 
-.sub-container-1 .description {
+.description {
   margin-bottom: 10px;
   font-size: 1.3rem;
   font-weight: 500;
 }
 
-.sub-container-1 .city-name,
-.sub-container-1 .date {
+.city-name,
+.date {
   font-size: .85rem;
 }
 
-.sub-container-1 .state-country-name,
+.state-country-name,
 .sub-container-1 .time {
   margin-bottom: 12px;
   font-size: .7rem;
@@ -39,7 +39,7 @@
   font-weight: 700;
 }
 
-.sub-container-1 .unit-toggler {
+.unit-toggler {
   margin-bottom: 12px;
   font-size: .6rem;
   font-weight: 600;
@@ -52,7 +52,7 @@
   margin-bottom: 10px;
 }
 
-.sub-container-1 .form {
+.form {
   justify-content: space-between;
   gap: 5px;
   margin-bottom: 5px;
@@ -60,35 +60,35 @@
   border-bottom: 1px solid var(--accent-1);
 }
 
-.sub-container-1 .search-field {
+.search-field {
   width: 165px;
   border: none;
   outline: none;
   background-color: transparent;
   color: var(--accent-1);
   font-size: .9rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--ff-1);
   font-weight: 500;
   text-indent: 5px;
 }
 
-.sub-container-1 .search-field::placeholder {
+.search-field::placeholder {
   color: var(--accent-1);
 }
 
-.sub-container-1 .search-icon {
+.search-icon {
   width: 18px;
   height: 18px;
   cursor: pointer;
 }
 
-.sub-container-1 .error-msg {
+.error-msg {
   display: none;
   font-size: .6rem;
   font-weight: 600;
 }
 
-.sub-container-1 .error-msg.show {
+.error-msg.show {
   display: block;
 }
 
@@ -99,12 +99,12 @@
   padding-top: 5px;
 }
 
-.sub-container-2 .box {
+.box {
   height: 40px;
   gap: 10px;
 }
 
-.sub-container-2 .texts-box {
+.texts-box {
   gap: 5px;
 }
 
@@ -113,12 +113,12 @@
   height: 25px;
 }
 
-.sub-container-2 .text-1 {
+.text-1 {
   font-size: .65rem;
   font-weight: 500;
 }
 
-.sub-container-2 .text-2 {
+.text-2 {
   font-size: .9rem;
   font-weight: 700;
 }
@@ -133,37 +133,34 @@
     width: 250px;
   }
 
-  .sub-container-1 .description {
+  .description {
     font-size: 1.75rem;
   }
   
-  .sub-container-1 .city-name,
-  .sub-container-1 .date {
+  .city-name,
+  .date {
     font-size: 1.1rem;
   }
   
-  .sub-container-1 .state-country-name,
+  .state-country-name,
   .sub-container-1 .time {
     font-size: .9rem;
   }
   
   .sub-container-1 .temp {
     font-size: 2.6rem;
-    font-weight: 700;
   }
   
-  .sub-container-1 .unit-toggler {
+  .unit-toggler {
     margin-bottom: 15px;
     font-size: .7rem;
-    font-weight: 600;
-    cursor: pointer;
   }
   
   .sub-container-1 .icon {
     width: 75px;
   }
 
-  .sub-container-1 .error-msg {
+  .error-msg {
     font-size: .65rem;
   }
 
@@ -171,12 +168,8 @@
     width: 150px;
   }
   
-  .sub-container-2 .box {
+  .box {
     height: 50px;
-  }
-  
-  .sub-container-2 .texts-box {
-    gap: 5px;
   }
   
   .sub-container-2 .icon {
@@ -184,11 +177,11 @@
     height: 35px;
   }
   
-  .sub-container-2 .text-1 {
+  .text-1 {
     font-size: .85rem;
   }
   
-  .sub-container-2 .text-2 {
+  .text-2 {
     font-size: 1.05rem;
   }
 }

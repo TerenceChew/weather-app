@@ -21,6 +21,7 @@ body::-webkit-scrollbar {
 /* Variables */
 :root {
   --accent-1: white;
+  --ff-1: 'Montserrat', sans-serif;
 }
 
 /* Utilities */

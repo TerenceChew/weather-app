@@ -3,17 +3,17 @@
   display: grid;
   grid-template-rows: 50px 1fr;
   row-gap: 15px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--ff-1);
   color: var(--accent-1);
 }
 
 /* Controls container */
-.bottom-container .controls-container {
+.controls-container {
   grid-area: 1 / 1 / 2 / -1;
   gap: 15px;
 }
 
-.bottom-container .control-btn {
+.control-btn {
   width: 70px;
   height: 30px;
   outline: none;
@@ -26,12 +26,12 @@
   cursor: pointer;
 }
 
-.bottom-container .control-btn.selected {
+.control-btn.selected {
   border: 2px solid var(--accent-1);
 }
 
 /* Infos container */
-.bottom-container .infos-container {
+.infos-container {
   grid-area: 2 / 1 / -1 / -1;
   align-items: center;
   gap: 25px;
@@ -42,43 +42,43 @@
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-.bottom-container .infos-container::-webkit-scrollbar {
+.infos-container::-webkit-scrollbar {
   display: none;
 }
 
-.bottom-container .daily-info-box,
-.bottom-container .hourly-info-box {
+.daily-info-box,
+.hourly-info-box {
   display: grid;
   align-items: center;
 }
 
-.bottom-container .daily-info-box {
+.daily-info-box {
   width: 335px;
   grid-template-columns: 1fr 130px 30px;
 }
 
-.bottom-container .hourly-info-box {
+.hourly-info-box {
   width: 255px;
   grid-template-columns: 1fr 70px 30px;
 }
 
-.bottom-container .day,
+.day,
 .bottom-container .time {
   font-size: .95rem;
   font-weight: 500;
 }
 
-.bottom-container .temps-box *,
+.temps-box *,
 .bottom-container .temp {
   font-size: 1.05rem;
   font-weight: 700;
 }
 
-.bottom-container .max-temp {
+.max-temp {
   margin-right: 5px;
 }
 
-.bottom-container .min-temp {
+.min-temp {
   margin-left: 5px;
 }
 
@@ -92,17 +92,17 @@
     row-gap: 20px;
   }
 
-  .bottom-container .daily-info-box {
+  .daily-info-box {
     width: 415px;
     grid-template-columns: 1fr 150px 50px;
   }
   
-  .bottom-container .hourly-info-box {
+  .hourly-info-box {
     width: 315px;
     grid-template-columns: 1fr 95px 50px;
   }
 
-  .bottom-container .day,
+  .day,
   .bottom-container .time {
     font-size: 1rem;
   }
@@ -121,7 +121,7 @@
     margin-top: 100px;
   }
 
-  .bottom-container .infos-container {
+  .infos-container {
     height: 235px;
     width: 880px;
     place-self: start center;
@@ -130,15 +130,15 @@
     justify-content: space-between;
   }
 
-  .bottom-container .daily-info-box,
-  .bottom-container .hourly-info-box {
+  .daily-info-box,
+  .hourly-info-box {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 45px;
   }
   
-  .bottom-container .temps-box *,
+  .temps-box *,
   .bottom-container .temp {
     font-size: .95rem;
   }
@@ -150,17 +150,17 @@
 }
 
 @media (min-width: 1300px) {
-  .bottom-container .control-btn {
+  .control-btn {
     width: 75px;
     height: 35px;
     font-size: .95rem;
   }
 
-  .bottom-container .infos-container {
+  .infos-container {
     width: 1050px;
   }
   
-  .bottom-container .temps-box *,
+  .temps-box *,
   .bottom-container .temp {
     font-size: 1.05rem;
   }
