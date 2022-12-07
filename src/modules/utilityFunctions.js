@@ -101,7 +101,7 @@ const createLocationName = (data) => {
 const getCityCoordinates = async (cityName, stateCode, countryCode) => {
   const processedStateCode = stateCode ? `,${stateCode}` : stateCode;
   const processedCountryCode = countryCode ? `,${countryCode}` : countryCode;
-  const url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}${processedStateCode}${processedCountryCode}&appid=${apiKey}`;
+  const url = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}${processedStateCode}${processedCountryCode}&appid=${apiKey}`;
 
   try {
     const response = await fetch(url);
