@@ -89,10 +89,54 @@ const createHourlyInfoUI = (hourlyData, appObj) => {
   return container;
 };
 
+let pos = {};
+
+const handlePointerDown = (e) => {
+  const container = document.querySelector(".infos-container");
+
+  pos = {
+    currTop: container.scrollTop,
+    currLeft: container.scrollLeft,
+    initialX: e.clientX,
+    initialY: e.clientY,
+  };
+
+  container.style.cursor = "grabbing";
+  container.style.userSelect = "none";
+
+  document.addEventListener("pointermove", handlePointerMove);
+  document.addEventListener("pointerup", handlePointerUp);
+};
+
+const handlePointerMove = (e) => {
+  const container = document.querySelector(".infos-container");
+  const { currTop, currLeft, initialX, initialY } = pos;
+  const currX = e.clientX;
+  const currY = e.clientY;
+  const distanceX = currX - initialX;
+  const distanceY = currY - initialY;
+
+  if (container.matches(":hover")) {
+    container.scrollLeft = currLeft - distanceX;
+    container.scrollTop = currTop - distanceY;
+  }
+};
+
+const handlePointerUp = () => {
+  const container = document.querySelector(".infos-container");
+
+  container.style.cursor = "grab";
+  container.style.userSelect = "auto";
+
+  document.removeEventListener("pointermove", handlePointerMove);
+  document.removeEventListener("pointerup", handlePointerUp);
+};
+
 const createInfosContainerUI = (appObj, mode) => {
   const container = document.createElement("div");
 
   container.classList.add("infos-container", "flex-column");
+  container.addEventListener("pointerdown", handlePointerDown);
 
   if (mode === "daily") {
     appObj.getDailyData().forEach((data) => {
