@@ -61,7 +61,7 @@
 }
 
 .search-field {
-  width: 165px;
+  width: 225px;
   border: none;
   outline: none;
   background-color: transparent;
@@ -158,6 +158,7 @@
   
   .sub-container-1 .icon {
     width: 75px;
+    height: 50px;
   }
 
   .error-msg {
@@ -165,11 +166,12 @@
   }
 
   .sub-container-2 {
-    width: 150px;
+    width: 155px;
   }
   
   .box {
     height: 50px;
+    gap: 15px;
   }
   
   .sub-container-2 .icon {
@@ -189,5 +191,10 @@
 @media (min-width: 1300px) {
   .top-container {
     padding: 50px 70px 0;
+  }
+
+  .sub-container-1 .icon {
+    width: 100px;
+    height: 70px;
   }
 }

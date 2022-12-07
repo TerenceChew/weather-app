@@ -7,7 +7,6 @@ let pos = {};
 
 // Drag to scroll functions
 const handlePointerDown = (e) => {
-  console.log("DOWN");
   const container = document.querySelector(".infos-container");
 
   pos = {
@@ -25,7 +24,6 @@ const handlePointerDown = (e) => {
 };
 
 const handlePointerMove = (e) => {
-  console.log("MOVE");
   const container = document.querySelector(".infos-container");
   const { currTop, currLeft, initialX, initialY } = pos;
   const currX = e.clientX;
@@ -40,7 +38,6 @@ const handlePointerMove = (e) => {
 };
 
 const handlePointerUp = () => {
-  console.log("UP");
   const container = document.querySelector(".infos-container");
 
   container.style.cursor = "grab";

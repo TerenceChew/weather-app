@@ -116,14 +116,14 @@
 
 @media (min-width: 950px) {
   .bottom-container {
-    height: 370px;
+    height: 310px;
     row-gap: 50px;
     padding: 0 35px;
-    margin-top: 100px;
+    margin-top: 85px;
   }
 
   .infos-container {
-    height: 235px;
+    height: 200px;
     width: 880px;
     place-self: start center;
     place-items: start center;
@@ -151,10 +151,19 @@
 }
 
 @media (min-width: 1300px) {
+  .bottom-container {
+    margin-top: 100px;
+  }
+
+  .controls-container {
+    gap: 25px;
+  }
+
   .control-btn {
-    width: 75px;
-    height: 35px;
-    font-size: .95rem;
+    width: 86px;
+    height: 38px;
+    padding-top: 2px;
+    font-size: 1rem;
   }
 
   .infos-container {
