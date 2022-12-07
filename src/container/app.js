@@ -49,6 +49,16 @@ const appFactory = () => {
   };
 };
 
+// UI functions
+const createFallbackErrMsgUI = () => {
+  const fallbackErrMsg = document.createElement("p");
+
+  fallbackErrMsg.classList.add("fallback-err-msg");
+  fallbackErrMsg.innerText = "Ops! App is down :(";
+
+  return fallbackErrMsg;
+};
+
 const createAppUI = async () => {
   const app = document.createElement("div");
   const appObj = appFactory();
@@ -72,12 +82,7 @@ const createAppUI = async () => {
   } catch (err) {
     console.log(err);
 
-    const fallbackErrMsg = document.createElement("p");
-
-    fallbackErrMsg.classList.add("fallback-err-msg");
-    fallbackErrMsg.innerText = "Ops! App is down :(";
-
-    app.append(fallbackErrMsg); // Or append a fallback UI
+    app.append(createFallbackErrMsgUI());
 
     return app;
   }
