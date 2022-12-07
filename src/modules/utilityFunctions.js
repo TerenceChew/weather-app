@@ -210,9 +210,10 @@ const getDailyData = (data) => {
 // Hourly data
 const processHourlyData = (hourlyData, timezone) => {
   const hourlyDataFor24Hours = hourlyData.slice(0, 24);
-  const processedHourlyData = hourlyDataFor24Hours.map((hour) => {
+  const processedHourlyData = hourlyDataFor24Hours.map((hour, i) => {
     const description = processDescription(hour.weather[0].description);
-    const timeOfDay = processTimeHH(processFullDate(hour.dt, timezone));
+    const timeOfDay =
+      i === 0 ? "Now" : processTimeHH(processFullDate(hour.dt, timezone));
     const temp = convertFahrenheitToCelsius(hour.temp);
     const { icon } = hour.weather[0];
 

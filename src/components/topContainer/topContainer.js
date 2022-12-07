@@ -10,6 +10,7 @@ import humidityIcon from "../../assets/svgs/humidity.svg";
 import chanceOfRainIcon from "../../assets/svgs/chanceOfRain.svg";
 import windSpeedIcon from "../../assets/svgs/windSpeed.svg";
 
+// Handler functions
 const handleTogglerClick = (unitToggler, appObj) => {
   appObj.toggleTempMode();
   const mode = appObj.getTempMode();
@@ -64,7 +65,8 @@ const handleSearch = async (appObj) => {
   }
 };
 
-const createSubContainer1 = (appObj) => {
+// UI functions
+const createSubContainer1UI = (appObj) => {
   // Data
   const currData = appObj.getCurrData();
   const locationName = appObj.getLocationName();
@@ -170,7 +172,7 @@ const createSubContainer1 = (appObj) => {
   return container;
 };
 
-const createSubContainer2 = (appObj) => {
+const createSubContainer2UI = (appObj) => {
   // Data
   const { feelsLike, humidity, chanceOfRain, windSpeed } = appObj.getCurrData();
 
@@ -228,7 +230,7 @@ const createTopContainerUI = (appObj) => {
 
   container.classList.add("top-container", "flex");
 
-  container.append(createSubContainer1(appObj), createSubContainer2(appObj));
+  container.append(createSubContainer1UI(appObj), createSubContainer2UI(appObj));
 
   return container;
 };

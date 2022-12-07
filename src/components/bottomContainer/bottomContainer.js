@@ -2,6 +2,55 @@ import "./bottomContainer.css";
 import * as utilityFunctions from "../../modules/utilityFunctions";
 import * as domController from "../../modules/domController";
 
+// Variables
+let pos = {};
+
+// Drag to scroll functions
+const handlePointerDown = (e) => {
+  console.log("DOWN");
+  const container = document.querySelector(".infos-container");
+
+  pos = {
+    currTop: container.scrollTop,
+    currLeft: container.scrollLeft,
+    initialX: e.clientX,
+    initialY: e.clientY,
+  };
+
+  container.style.cursor = "grabbing";
+  container.style.userSelect = "none";
+
+  document.addEventListener("pointermove", handlePointerMove);
+  document.addEventListener("pointerup", handlePointerUp);
+};
+
+const handlePointerMove = (e) => {
+  console.log("MOVE");
+  const container = document.querySelector(".infos-container");
+  const { currTop, currLeft, initialX, initialY } = pos;
+  const currX = e.clientX;
+  const currY = e.clientY;
+  const distanceX = currX - initialX;
+  const distanceY = currY - initialY;
+
+  if (container.matches(":hover")) {
+    container.scrollLeft = currLeft - distanceX;
+    container.scrollTop = currTop - distanceY;
+  }
+};
+
+const handlePointerUp = () => {
+  console.log("UP");
+  const container = document.querySelector(".infos-container");
+
+  container.style.cursor = "grab";
+  container.style.userSelect = "auto";
+
+  document.removeEventListener("pointermove", handlePointerMove);
+  document.removeEventListener("pointerup", handlePointerUp);
+};
+
+// UI functions
 const updateBtnUI = (clickedBtn) => {
   const controlBtns = document.querySelectorAll(".control-btn");
 
@@ -87,49 +136,6 @@ const createHourlyInfoUI = (hourlyData, appObj) => {
   container.append(time, temperature, weatherIcon);
 
   return container;
-};
-
-let pos = {};
-
-const handlePointerDown = (e) => {
-  const container = document.querySelector(".infos-container");
-
-  pos = {
-    currTop: container.scrollTop,
-    currLeft: container.scrollLeft,
-    initialX: e.clientX,
-    initialY: e.clientY,
-  };
-
-  container.style.cursor = "grabbing";
-  container.style.userSelect = "none";
-
-  document.addEventListener("pointermove", handlePointerMove);
-  document.addEventListener("pointerup", handlePointerUp);
-};
-
-const handlePointerMove = (e) => {
-  const container = document.querySelector(".infos-container");
-  const { currTop, currLeft, initialX, initialY } = pos;
-  const currX = e.clientX;
-  const currY = e.clientY;
-  const distanceX = currX - initialX;
-  const distanceY = currY - initialY;
-
-  if (container.matches(":hover")) {
-    container.scrollLeft = currLeft - distanceX;
-    container.scrollTop = currTop - distanceY;
-  }
-};
-
-const handlePointerUp = () => {
-  const container = document.querySelector(".infos-container");
-
-  container.style.cursor = "grab";
-  container.style.userSelect = "auto";
-
-  document.removeEventListener("pointermove", handlePointerMove);
-  document.removeEventListener("pointerup", handlePointerUp);
 };
 
 const createInfosContainerUI = (appObj, mode) => {
