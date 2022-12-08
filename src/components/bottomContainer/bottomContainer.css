@@ -1,5 +1,5 @@
 .bottom-container {
-  height: 450px;
+  height: 480px;
   display: grid;
   grid-template-rows: 50px 1fr;
   row-gap: 15px;
@@ -35,7 +35,7 @@
   grid-area: 2 / 1 / -1 / -1;
   align-items: center;
   gap: 25px;
-  padding-bottom: 20px;
+  padding-bottom: 25px;
   overflow: scroll;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -54,13 +54,13 @@
 }
 
 .daily-info-box {
-  width: 335px;
-  grid-template-columns: 1fr 130px 30px;
+  width: 340px;
+  grid-template-columns: 1fr 155px 30px;
 }
 
 .hourly-info-box {
-  width: 255px;
-  grid-template-columns: 1fr 70px 30px;
+  width: 265px;
+  grid-template-columns: 1fr 90px 30px;
 }
 
 .day,
@@ -84,23 +84,24 @@
 }
 
 .bottom-container .icon {
-  height: 25px;
-  width: 25px;
+  height: 28px;
+  width: 28px;
 }
 
 @media (min-width: 650px) {
   .bottom-container {
+    height: 495px;
     row-gap: 20px;
   }
 
   .daily-info-box {
     width: 415px;
-    grid-template-columns: 1fr 150px 50px;
+    grid-template-columns: 1fr 160px 40px;
   }
   
   .hourly-info-box {
     width: 315px;
-    grid-template-columns: 1fr 95px 50px;
+    grid-template-columns: 1fr 95px 40px;
   }
 
   .day,

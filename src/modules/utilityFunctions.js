@@ -129,8 +129,6 @@ const getWeatherData = async (cityName, stateCode = "", countryCode = "") => {
     const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,alerts&appid=${apiKey}`;
     const response = await fetch(url);
 
-    console.log("getWeatherData Ran");
-
     if (response.ok) {
       const data = await response.json();
 
