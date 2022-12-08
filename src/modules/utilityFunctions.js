@@ -51,6 +51,7 @@ const determineIcon = (iconCode) => {
 
 const setElemProps = (elem, obj) => {
   Object.keys(obj).forEach((key) => {
+    // eslint-disable-next-line no-param-reassign
     elem[key] = obj[key];
   });
 };

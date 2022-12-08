@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import "./topContainer.css";
 import createBottomContainerUI from "../bottomContainer/bottomContainer";
 import * as utilityFunctions from "../../modules/utilityFunctions";

@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import "./bottomContainer.css";
 import * as utilityFunctions from "../../modules/utilityFunctions";
 import * as domController from "../../modules/domController";
