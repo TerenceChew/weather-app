@@ -18,6 +18,11 @@ const appFactory = () => {
   const getHourlyData = () => hourlyData;
   const getTempMode = () => tempMode;
 
+  // Reseting
+  const resetTempMode = () => {
+    tempMode = "C";
+  };
+
   // Updating
   const updateMainData = (newMainData) => {
     mainData = newMainData;
@@ -25,6 +30,8 @@ const appFactory = () => {
   const updateLocationName = (newLocationName) => {
     locationName = newLocationName;
   };
+
+  // Toggling
   const toggleTempMode = () => {
     tempMode = tempMode === "C" ? "F" : "C";
   };
@@ -44,6 +51,7 @@ const appFactory = () => {
     getTempMode,
     updateMainData,
     updateLocationName,
+    resetTempMode,
     toggleTempMode,
     initializeSubData,
   };

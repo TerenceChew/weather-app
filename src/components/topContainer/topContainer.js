@@ -48,6 +48,7 @@ const handleSearch = async (appObj) => {
       appObj.updateMainData(data);
       appObj.updateLocationName(locationName);
       appObj.initializeSubData();
+      appObj.resetTempMode();
 
       domController.updateAppUI(
         createTopContainerUI(appObj),
@@ -230,7 +231,10 @@ const createTopContainerUI = (appObj) => {
 
   container.classList.add("top-container", "flex");
 
-  container.append(createSubContainer1UI(appObj), createSubContainer2UI(appObj));
+  container.append(
+    createSubContainer1UI(appObj),
+    createSubContainer2UI(appObj)
+  );
 
   return container;
 };
