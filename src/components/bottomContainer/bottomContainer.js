@@ -67,6 +67,7 @@ const createDailyInfoUI = (dailyData, appObj) => {
   const tempsBox = document.createElement("div");
   const maxTemperature = document.createElement("span");
   const minTemperature = document.createElement("span");
+  const divider = document.createElement("div");
   const weatherIcon = document.createElement("img");
 
   container.classList.add("daily-info-box");
@@ -92,11 +93,13 @@ const createDailyInfoUI = (dailyData, appObj) => {
     );
   }
 
+  divider.classList.add("divider");
+
   weatherIcon.classList.add("icon");
   weatherIcon.src = utilityFunctions.determineIcon(icon);
   weatherIcon.title = description;
 
-  tempsBox.append(maxTemperature, " / ", minTemperature);
+  tempsBox.append(maxTemperature, divider, minTemperature);
   container.append(day, tempsBox, weatherIcon);
 
   return container;
@@ -168,7 +171,7 @@ const createBottomContainerUI = (appObj) => {
 
   container.classList.add("bottom-container");
 
-  controlsContainer.classList.add("controls-container", "flex", "center");
+  controlsContainer.classList.add("controls-container", "flex");
 
   dailyBtn.classList.add(
     "control-btn",

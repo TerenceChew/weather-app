@@ -130,7 +130,7 @@
   }
 
   .sub-container-1 {
-    width: 250px;
+    width: 255px;
   }
 
   .description {
@@ -161,12 +161,16 @@
     height: 50px;
   }
 
+  .search-field {
+    font-size: 1rem;
+  }
+
   .error-msg {
     font-size: .65rem;
   }
 
   .sub-container-2 {
-    width: 155px;
+    width: auto;
   }
   
   .box {
@@ -190,11 +194,60 @@
 
 @media (min-width: 1300px) {
   .top-container {
-    padding: 50px 70px 0;
+    height: 455px;
+    padding: 40px 70px 0;
+  }
+
+  .sub-container-1 {
+    width: 275px;
+  }
+
+  .description {
+    font-size: 1.85rem;
+  }
+  
+  .city-name,
+  .date {
+    font-size: 1.2rem;
+  }
+  
+  .state-country-name,
+  .sub-container-1 .time {
+    font-size: 1rem;
+  }
+  
+  .sub-container-1 .temp {
+    font-size: 2.95rem;
+  }
+  
+  .unit-toggler {
+    margin-bottom: 18px;
+    font-size: .85rem;
   }
 
   .sub-container-1 .icon {
     width: 100px;
     height: 70px;
+  }
+
+  .error-msg {
+    font-size: .75rem;
+  }
+  
+  .box {
+    gap: 25px;
+  }
+  
+  .sub-container-2 .icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .text-1 {
+    font-size: 1rem;
+  }
+  
+  .text-2 {
+    font-size: 1.25rem;
   }
 }
