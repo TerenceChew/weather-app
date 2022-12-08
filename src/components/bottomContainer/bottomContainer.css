@@ -119,17 +119,17 @@
   .bottom-container {
     height: 310px;
     row-gap: 50px;
-    padding: 0 35px;
     margin-top: 85px;
   }
 
   .infos-container {
     height: 200px;
-    width: 880px;
+    width: 945px;
     place-self: start center;
     place-items: start center;
     flex-direction: row;
     justify-content: space-between;
+    gap: 0;
   }
 
   .daily-info-box,
@@ -138,6 +138,15 @@
     flex-direction: column;
     align-items: center;
     gap: 45px;
+    flex-shrink: 0;
+  }
+
+  .daily-info-box {
+    width: 115px;
+  }
+
+  .hourly-info-box {
+    width: 105px; /* 945px / 9 */
   }
   
   .temps-box *,
@@ -146,7 +155,6 @@
   }
 
   .bottom-container .temp {
-    width: 75px;
     text-align: center;
   }
 }
@@ -168,16 +176,20 @@
   }
 
   .infos-container {
-    width: 1050px;
+    width: 1080px;
+  }
+
+  .daily-info-box {
+    width: 135px;
+  }
+
+  .hourly-info-box {
+    width: 120px; /* 1080px / 9 */
   }
   
   .temps-box *,
   .bottom-container .temp {
     font-size: 1.05rem;
-  }
-
-  .bottom-container .temp {
-    width: 80px;
   }
   
   .bottom-container .icon {

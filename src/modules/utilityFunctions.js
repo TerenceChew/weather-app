@@ -85,9 +85,9 @@ const processWindSpeed = (windSpeedMPH) =>
 
 const processFeelsLike = (feelsLike) => convertFahrenheitToCelsius(feelsLike);
 
-const processHumidity = (humidity) => `${humidity} %`;
+const processHumidity = (humidity) => `${humidity.toFixed(0)} %`;
 
-const processPop = (pop) => `${pop * 100} %`;
+const processPop = (pop) => `${(pop * 100).toFixed(0)} %`;
 
 const createLocationName = (data) => {
   const { name, state, country } = data;
