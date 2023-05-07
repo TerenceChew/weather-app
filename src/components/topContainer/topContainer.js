@@ -145,6 +145,7 @@ const createSubContainer1UI = (appObj) => {
 
   searchIcon.classList.add("search-icon");
   searchIcon.src = magnifier;
+  searchIcon.alt = "Magnifier Icon";
   searchIcon.addEventListener("pointerdown", () => {
     handleSearch(appObj);
   });
@@ -198,22 +199,26 @@ const createSubContainer2UI = (appObj) => {
 
     if (i === 0) {
       icon.src = thermoIcon;
+      icon.alt = "Thermo Icon";
       text1.innerText = "Feels Like";
       text2.classList.add("temperature");
     }
 
     if (i === 1) {
       icon.src = humidityIcon;
+      icon.alt = "Humidity Icon";
       text1.innerText = "Humidity";
     }
 
     if (i === 2) {
       icon.src = chanceOfRainIcon;
+      icon.alt = "Raining Icon";
       text1.innerText = "Chance of Rain";
     }
 
     if (i === 3) {
       icon.src = windSpeedIcon;
+      icon.alt = "Wind Speed Icon";
       text1.innerText = "Wind Speed";
     }
 
