@@ -34,6 +34,10 @@
   grid-area: 2 / 1 / -1 / -1;
   align-items: center;
   justify-content: space-between;
+  user-select: none;
+}
+
+.infos-container.scrollable {
   overflow: scroll;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */

@@ -18,7 +18,6 @@ const handlePointerDown = (e) => {
   };
 
   container.style.cursor = "grabbing";
-  container.style.userSelect = "none";
 
   document.addEventListener("pointermove", handlePointerMove);
   document.addEventListener("pointerup", handlePointerUp);
@@ -42,7 +41,6 @@ const handlePointerUp = () => {
   const container = document.querySelector(".infos-container");
 
   container.style.cursor = "grab";
-  container.style.userSelect = "auto";
 
   document.removeEventListener("pointermove", handlePointerMove);
   document.removeEventListener("pointerup", handlePointerUp);
@@ -143,7 +141,6 @@ const createInfosContainerUI = (appObj, mode) => {
   const container = document.createElement("div");
 
   container.classList.add("infos-container", "flex-column");
-  container.addEventListener("pointerdown", handlePointerDown);
 
   if (mode === "daily") {
     appObj.getDailyData().forEach((data) => {
@@ -153,6 +150,8 @@ const createInfosContainerUI = (appObj, mode) => {
     appObj.getHourlyData().forEach((data) => {
       container.append(createHourlyInfoUI(data, appObj));
     });
+    container.addEventListener("pointerdown", handlePointerDown);
+    container.classList.add("scrollable");
   }
 
   return container;
